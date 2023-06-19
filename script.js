@@ -5,9 +5,10 @@ let activePlayer = document.querySelector(".player--active");
 
 // ============== Functions ================
 function initGame() {
-  document.querySelectorAll(".player").forEach((player) => {
+  document.querySelectorAll(".player").forEach((player, i) => {
     player.classList.remove("player--active");
     player.classList.remove("player--winner");
+    player.querySelector(".name").textContent = `Player ${i + 1}`;
     player.querySelector(".score").textContent = 0;
     player.querySelector(".current-score").textContent = 0;
   });
@@ -52,6 +53,7 @@ function holdPoints() {
 
     if (activePlayer.querySelector(".score").textContent >= 100) {
       activePlayer.classList.add("player--winner");
+      activePlayer.querySelector(".name").textContent = "Winner!!";
     }
   }
 }
