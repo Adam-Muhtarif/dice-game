@@ -1,6 +1,7 @@
 ## Dice game 🎮🕹
 
 We will be making a simple game!
+
 My Demo 
 [Play game](https://adam-muhtarif.github.io/dice-game/)
 
