@@ -1,10 +1,6 @@
 //write code here
 const playerOne = document.querySelector(".player--0"),
-  playerTwo = document.querySelector(".player--1"),
-  diceImage = document.querySelector(".dice"),
-  newGameBtn = document.querySelector(".btn--new"),
-  rollDiceBtn = document.querySelector(".btn--roll"),
-  holdBtn = document.querySelector(".btn--hold");
+  playerTwo = document.querySelector(".player--1");
 let activePlayer = document.querySelector(".player--active");
 
 // ============== Functions ================
@@ -26,7 +22,7 @@ initGame();
   3. else set current value 0 and switch player
 */
 function keepPlaying(dice) {
-  diceImage.setAttribute("src", `dice-${dice}.png`);
+  document.querySelector(".dice").setAttribute("src", `dice-${dice}.png`);
   if (dice !== 1) {
     activePlayer.querySelector(".current-score").textContent =
       +activePlayer.querySelector(".current-score").textContent + dice;
@@ -75,13 +71,8 @@ function checkEndGame(dice) {
 }
 
 function switchPlayer() {
-  if (playerOne.classList.contains("player--active")) {
-    playerOne.classList.remove("player--active");
-    playerTwo.classList.add("player--active");
-  } else {
-    playerTwo.classList.remove("player--active");
-    playerOne.classList.add("player--active");
-  }
+  playerOne.classList.toggle("player--active");
+  playerTwo.classList.toggle("player--active");
 }
 
 // ============== Buttons ================
@@ -90,7 +81,7 @@ function switchPlayer() {
   2. Generate random dice
   3. Check if game end
 */
-rollDiceBtn.addEventListener("click", () => {
+document.querySelector(".btn--roll").addEventListener("click", () => {
   activePlayer = document.querySelector(".player--active");
   let dice = Math.floor(Math.random() * 6) + 1;
   return checkEndGame(dice);
@@ -100,7 +91,7 @@ rollDiceBtn.addEventListener("click", () => {
   1. check if game end, if not true switch player
   2. if true return false
 */
-holdBtn.addEventListener("click", () => {
+document.querySelector(".btn--hold").addEventListener("click", () => {
   if (checkEndGame() !== false) {
     switchPlayer();
   } else return false;
@@ -112,6 +103,6 @@ holdBtn.addEventListener("click", () => {
   3. Set score and currentScore to 0
   4. Set player 1 as starting player
 */
-newGameBtn.addEventListener("click", () => {
+document.querySelector(".btn--new").addEventListener("click", () => {
   initGame();
 });
